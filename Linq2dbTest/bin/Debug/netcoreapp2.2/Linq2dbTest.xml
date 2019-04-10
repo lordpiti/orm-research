@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Linq2dbTest</name>
+    </assembly>
+    <members>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Get a list with all the products
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.FindProduct(System.Int32)">
+            <summary>
+            Find a specific product
+            </summary>
+            <param name="id">id of the product to find</param>
+            <returns></returns>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.AddCategory(DataAccess.DataModelResearch.Category)">
+            <summary>
+            Create a new category
+            </summary>
+            <param name="category"></param>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.AddProduct(DataAccess.DataModelResearch.Product)">
+            <summary>
+            Create a new product
+            </summary>
+            <param name="product"></param>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.Delete(System.Int32)">
+            <summary>
+            Delete a product
+            </summary>
+            <param name="id">id of the product to delete</param>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.Update(DataAccess.DataModelResearch.Product)">
+            <summary>
+            Update an existing product
+            </summary>
+            <param name="product">Product info to update</param>
+        </member>
+    </members>
+</doc>

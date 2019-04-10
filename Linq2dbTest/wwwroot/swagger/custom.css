@@ -1,0 +1,21 @@
+﻿.swagger-ui .topbar {
+    background-color: #000;
+    border-bottom: 0.5em solid #C0C0C0;
+    padding: 12px 0 10px;
+}
+
+.topbar-wrapper span {
+    visibility: collapse;
+}
+
+.swagger-ui .select-label {
+    color: #ffffff;
+}
+
+.topbar-wrapper img {
+    width: auto;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border: 2px solid #C0C0C0;
+}
