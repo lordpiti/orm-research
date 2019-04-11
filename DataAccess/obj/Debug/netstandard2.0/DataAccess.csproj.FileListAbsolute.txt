@@ -7,3 +7,12 @@ C:\Users\pabloa\source\repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\Dat
 C:\Users\pabloa\source\repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
 C:\Users\pabloa\source\repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
 C:\Users\pabloa\source\repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
+C:\Repos\Linq2dbTest\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Repos\Linq2dbTest\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Repos\Linq2dbTest\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Repos\Linq2dbTest\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

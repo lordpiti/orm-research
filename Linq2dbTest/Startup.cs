@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Concrete;
+using DataAccess.EFModels;
 using DataAccess.Interface;
 using LinqToDB.Data;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Linq2dbTest
 {
@@ -28,7 +31,14 @@ namespace Linq2dbTest
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddScoped<IResearchRepository, DapperResearchRepository>();
+
+            var connectionString = Configuration.GetSection("DBInfo:ConnectionString").Value;
+
+            services
+                    .AddDbContext<researchContext>(options =>
+                    options.UseNpgsql(connectionString));
+
+            services.AddScoped<IResearchRepository, EFResearchRepository>();
 
             // DI for database settings
             services.Configure<ConnectionStringSettings>(options => Configuration.GetSection("DBInfo").Bind(options));
