@@ -21,5 +21,9 @@ namespace DataAccess.Interface
         void RemoveProduct(int id);
 
         void UpdateProduct(Product product);
+
+        List<Product> LoadProductsWithinCategory(int id);
+
+        List<object> GetProductsGrouped();
     }
 }

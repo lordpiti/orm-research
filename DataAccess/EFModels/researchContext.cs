@@ -1,7 +1,4 @@
-﻿using System;
-using DataAccess.DataModelResearch;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.EFModels
 {

@@ -13,7 +13,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Linq2dbTest
 {
@@ -30,18 +29,25 @@ namespace Linq2dbTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton(Configuration);
 
-            var connectionString = Configuration.GetSection("DBInfo:ConnectionString").Value;
+            #region DI setup for database settings
+
+            services.Configure<ConnectionStringSettings>(options => Configuration.GetSection("DBInfo").Bind(options));
+
+            #endregion
+
+            #region DI setup for EF context
+
+            var connectionString = GetConnectionStringSettings().ConnectionString;
 
             services
                     .AddDbContext<researchContext>(options =>
                     options.UseNpgsql(connectionString));
 
-            services.AddScoped<IResearchRepository, EFResearchRepository>();
+            #endregion
 
-            // DI for database settings
-            services.Configure<ConnectionStringSettings>(options => Configuration.GetSection("DBInfo").Bind(options));
+            services.AddScoped<IResearchRepository, Linq2dbResearchRepository>();
 
             #region Swagger setup
 

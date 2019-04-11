@@ -1,10 +1,7 @@
-﻿using DataAccess.DataModelResearch;
-using DataAccess.EFModels;
-using Microsoft.EntityFrameworkCore;
+﻿using DataAccess.EFModels;
 using DataAccess.Interface;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace DataAccess.Concrete
@@ -18,32 +15,92 @@ namespace DataAccess.Concrete
             _context = context;
         }
 
-        public bool AddCategory(Category category)
+        public bool AddCategory(DataModelResearch.Category category)
         {
-            _context.Category.Add(category);
+
+            var newCategory = new EFModels.Category()
+            {
+                Name = category.Name
+            };
+
+            _context.Category.Add(newCategory);
 
             _context.SaveChanges();
 
             return true;
         }
 
-        public bool AddProduct(Product product)
+        public bool AddProduct(DataModelResearch.Product product)
         {
-            _context.Product.Add(product);
+            var newProduct = new EFModels.Product()
+            {
+                Name = product.Name,
+                CategoryId = product.CategoryId
+            };
 
+            _context.Product.Add(newProduct);
             _context.SaveChanges();
 
             return true;
         }
 
-        public Product FindProduct(int id)
+        public DataModelResearch.Product FindProduct(int id)
         {
-            return _context.Product.FirstOrDefault(x => x.Id == id);
+            var foundProduct = _context.Product.FirstOrDefault(x => x.Id == id);
+
+            return new DataModelResearch.Product()
+            {
+                Name = foundProduct.Name, Category = new DataModelResearch.Category()
+                {
+                    Name = foundProduct.Category.Name,
+                    Id = foundProduct.Category.Id
+                }
+            };
         }
 
-        public List<Product> LoadProductsWithCategory()
+        public List<DataModelResearch.Product> LoadProductsWithCategory()
         {
-            var products = _context.Product.ToList();
+            var products = _context.Product.Include(x=>x.Category).Select(x => new DataModelResearch.Product()
+            {
+                Name = x.Name,
+                Id = x.Id,
+                Category = new DataModelResearch.Category()
+                {
+                    Id = x.Category.Id,
+                    Name = x.Category.Name
+                }
+            }).ToList();
+
+            return products;
+        }
+
+        public List<DataModelResearch.Product> LoadProductsWithinCategory(int id)
+        {
+            var products = _context.Product
+                .Where(x => x.CategoryId == id).Include(x => x.Category)
+                .Select(x => new DataModelResearch.Product()
+                {
+                    Name = x.Name,
+                    Id = x.Id,
+                    Category = new DataModelResearch.Category()
+                    {
+                        Id = x.Category.Id,
+                        Name = x.Category.Name
+                    }
+                }).ToList();
+
+            //var products = _context.Category.Include(x=>x.Product)
+            //    .FirstOrDefault(x => x.Id == id).Product
+            //    .Select(x => new DataModelResearch.Product()
+            //    {
+            //        Name = x.Name,
+            //        Id = x.Id,
+            //        Category = new DataModelResearch.Category()
+            //        {
+            //            Id = x.Category.Id,
+            //            Name = x.Category.Name
+            //        }
+            //    }).ToList();
 
             return products;
         }
@@ -57,7 +114,7 @@ namespace DataAccess.Concrete
             _context.SaveChanges();
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(DataModelResearch.Product product)
         {
             var productToUpdate = _context.Product.FirstOrDefault(x => x.Id == product.Id);
 
@@ -69,6 +126,21 @@ namespace DataAccess.Concrete
             productToUpdate.Category = newCategory;
 
             _context.SaveChanges();
+        }
+
+        public List<object> GetProductsGrouped()
+        {
+            var testdata = _context.Product.GroupBy(x => x.Category.Name)
+                .Select(x => new {
+                    Name = x.Key,
+                    Products = x.Select(product => new DataModelResearch.Product
+                        {
+                            Name = product.Name,
+                            Id = product.Id
+                        })
+                    }).ToList();
+
+            return testdata.ToList<object>();
         }
     }
 }

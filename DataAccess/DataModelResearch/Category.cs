@@ -8,11 +8,9 @@ namespace DataAccess.DataModelResearch
     {
         public Category()
         {
-            Product = new List<Product>();
         }
 
         public string Name { get; set; }
 
-        public List<Product> Product { get; set; }
     }
 }

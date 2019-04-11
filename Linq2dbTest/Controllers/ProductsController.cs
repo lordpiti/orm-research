@@ -94,5 +94,29 @@ namespace Linq2dbTest.Controllers
         {
             return "Not relevant";
         }
+
+        /// <summary>
+        /// Get all the products within a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("category/{id}")]
+        [ApiExplorerSettings(GroupName = "v1")]
+        public List<Product> FindProductWithinCategory(int id)
+        {
+            return _repo.LoadProductsWithinCategory(id);
+        }
+
+        /// <summary>
+        /// Get all the products within a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("byCategory")]
+        [ApiExplorerSettings(GroupName = "v1")]
+        public List<object> GetProductsGrouped(int id)
+        {
+            return _repo.GetProductsGrouped();
+        }
     }
 }

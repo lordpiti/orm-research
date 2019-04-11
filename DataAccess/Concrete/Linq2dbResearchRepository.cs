@@ -1,11 +1,8 @@
-﻿using DataAccess.Interface;
-using DataModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using DataAccess.DataModelResearch;
+﻿using DataAccess.DataModelResearch;
+using DataAccess.Interface;
 using LinqToDB;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataAccess.Concrete
 {
@@ -89,6 +86,37 @@ namespace DataAccess.Concrete
             using (var db = new Context())
             {
                 db.Update(product);
+            }
+        }
+
+        public List<Product> LoadProductsWithinCategory(int id)
+        {
+            using (var db = new Context())
+            {
+                var q = db.Products.LoadWith(x=>x.Category).Where(x => x.CategoryId == id);
+
+                var productList = q.ToList();
+
+                return productList;
+            }
+        }
+
+        public List<object> GetProductsGrouped()
+        {
+            using (var db = new Context())
+            {
+                var testdata = db.Products.GroupBy(x => x.Category.Name)
+                    .Select(x => new
+                    {
+                        Name = x.Key,
+                        Products = x.Select(product => new DataModelResearch.Product
+                        {
+                            Name = product.Name,
+                            Id = product.Id
+                        }).ToList()
+                    }).ToList();
+
+                return testdata.ToList<object>();
             }
         }
     }

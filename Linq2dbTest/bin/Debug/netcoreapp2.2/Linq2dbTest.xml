@@ -41,5 +41,19 @@
             </summary>
             <param name="product">Product info to update</param>
         </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.FindProductWithinCategory(System.Int32)">
+            <summary>
+            Get all the products within a category
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.Testte(System.Int32)">
+            <summary>
+            Get all the products within a category
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
