@@ -101,12 +101,12 @@ namespace DataAccess.Concrete
             }
         }
 
-        public List<object> GetProductsGrouped()
+        public List<CategoryGroup> GetProductsGrouped()
         {
             using (var db = new Context())
             {
                 var testdata = db.Products.GroupBy(x => x.Category.Name)
-                    .Select(x => new
+                    .Select(x => new CategoryGroup
                     {
                         Name = x.Key,
                         Products = x.Select(product => new DataModelResearch.Product
@@ -116,7 +116,7 @@ namespace DataAccess.Concrete
                         }).ToList()
                     }).ToList();
 
-                return testdata.ToList<object>();
+                return testdata;
             }
         }
     }

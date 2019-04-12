@@ -24,6 +24,6 @@ namespace DataAccess.Interface
 
         List<Product> LoadProductsWithinCategory(int id);
 
-        List<object> GetProductsGrouped();
+        List<CategoryGroup> GetProductsGrouped();
     }
 }

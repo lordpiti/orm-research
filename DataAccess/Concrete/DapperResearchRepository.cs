@@ -143,7 +143,7 @@ namespace DataAccess.Concrete
             }
         }
 
-        public List<object> GetProductsGrouped()
+        public List<CategoryGroup> GetProductsGrouped()
         {
             throw new System.NotImplementedException();
         }

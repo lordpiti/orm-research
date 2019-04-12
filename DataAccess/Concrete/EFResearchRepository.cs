@@ -128,19 +128,20 @@ namespace DataAccess.Concrete
             _context.SaveChanges();
         }
 
-        public List<object> GetProductsGrouped()
+        public List<DataModelResearch.CategoryGroup> GetProductsGrouped()
         {
             var testdata = _context.Product.GroupBy(x => x.Category.Name)
-                .Select(x => new {
+                .Select(x => new DataModelResearch.CategoryGroup
+                {
                     Name = x.Key,
                     Products = x.Select(product => new DataModelResearch.Product
                         {
                             Name = product.Name,
                             Id = product.Id
-                        })
+                        }).ToList()
                     }).ToList();
 
-            return testdata.ToList<object>();
+            return testdata;
         }
     }
 }

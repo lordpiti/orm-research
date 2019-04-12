@@ -114,7 +114,7 @@ namespace Linq2dbTest.Controllers
         /// <returns></returns>
         [HttpGet("byCategory")]
         [ApiExplorerSettings(GroupName = "v1")]
-        public List<object> GetProductsGrouped(int id)
+        public List<CategoryGroup> GetProductsGrouped(int id)
         {
             return _repo.GetProductsGrouped();
         }
