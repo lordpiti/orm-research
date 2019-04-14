@@ -31,7 +31,7 @@ namespace Linq2dbTest
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton(Configuration);
 
-            #region DI setup for database settings
+            #region DI setup for db settings
 
             services.Configure<ConnectionStringSettings>(options => Configuration.GetSection("DBInfo").Bind(options));
 
@@ -47,7 +47,25 @@ namespace Linq2dbTest
 
             #endregion
 
-            services.AddScoped<IResearchRepository, DapperResearchRepository>();
+            #region General DI setup for repositories
+
+            services.AddScoped<IResearchRepository, Linq2dbResearchRepository>();
+            services.AddScoped<DapperResearchRepository>();
+
+            services.AddScoped<Func<bool, IResearchRepository>>(serviceProvider => isAuthorized =>
+            {
+                switch (isAuthorized)
+                {
+                    case true:
+                        return serviceProvider.GetService<DapperResearchRepository>();
+                    case false:
+                        return serviceProvider.GetService<IResearchRepository>();
+                    default:
+                        throw new InvalidOperationException();
+                }
+            });
+
+            #endregion
 
             #region Swagger setup
 
@@ -96,6 +114,13 @@ namespace Linq2dbTest
             var connectionStringSettings = this.GetConnectionStringSettings();
 
             DataConnection.DefaultSettings = new MySettings(connectionStringSettings);
+
+            //Enable generated SQL logging
+            DataConnection.TurnTraceSwitchOn();
+            DataConnection.WriteTraceLine = (message, displayName) =>
+            {
+                Console.WriteLine($"{message} {displayName}");
+            };
 
             #endregion
 

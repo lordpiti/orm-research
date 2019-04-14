@@ -13,10 +13,12 @@ namespace Linq2dbTest.Controllers
     public class ProductsController : ControllerBase
     {
         private IResearchRepository _repo;
+        private readonly Func<bool, IResearchRepository> _serviceAccessor;
 
-        public ProductsController(IResearchRepository repo)
+        public ProductsController(IResearchRepository repo, Func<bool, IResearchRepository> serviceAccessor)
         {
             _repo = repo;
+            _serviceAccessor = serviceAccessor;
         }
 
         /// <summary>
@@ -116,6 +118,7 @@ namespace Linq2dbTest.Controllers
         [ApiExplorerSettings(GroupName = "v1")]
         public List<CategoryGroup> GetProductsGrouped(int id)
         {
+            _repo = _serviceAccessor(true);
             return _repo.GetProductsGrouped();
         }
     }
