@@ -9,6 +9,9 @@ namespace DataAccess.EFModels
         public string Name { get; set; }
         public int? CategoryId { get; set; }
 
+        public int UnitPrice { get; set; }
+
         public virtual Category Category { get; set; }
+
     }
 }

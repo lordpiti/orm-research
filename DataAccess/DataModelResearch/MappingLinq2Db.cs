@@ -22,6 +22,7 @@ namespace DataAccess.DataModelResearch
                         .IsIdentity().IsPrimaryKey()
                     .Property(x => x.Name).HasColumnName("name")
                     .Property(x => x.CategoryId).HasColumnName("categoryId")
+                    .Property(x => x.UnitPrice).HasColumnName("Unit_Price")
                     .Association(product => product.Category, (product, category) => product.CategoryId == category.Id);
 
                 mapper

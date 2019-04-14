@@ -35,7 +35,8 @@ namespace DataAccess.Concrete
             var newProduct = new EFModels.Product()
             {
                 Name = product.Name,
-                CategoryId = product.CategoryId
+                CategoryId = product.CategoryId,
+                UnitPrice = product.UnitPrice
             };
 
             _context.Product.Add(newProduct);
@@ -50,10 +51,12 @@ namespace DataAccess.Concrete
 
             return new DataModelResearch.Product()
             {
-                Name = foundProduct.Name, Category = new DataModelResearch.Category()
+                Name = foundProduct.Name,
+                UnitPrice = foundProduct.UnitPrice,
+                Category = new DataModelResearch.Category()
                 {
                     Name = foundProduct.Category.Name,
-                    Id = foundProduct.Category.Id
+                    Id = foundProduct.Category.Id,
                 }
             };
         }
@@ -64,6 +67,7 @@ namespace DataAccess.Concrete
             {
                 Name = x.Name,
                 Id = x.Id,
+                UnitPrice = x.UnitPrice,
                 Category = new DataModelResearch.Category()
                 {
                     Id = x.Category.Id,
@@ -82,6 +86,7 @@ namespace DataAccess.Concrete
                 {
                     Name = x.Name,
                     Id = x.Id,
+                    UnitPrice = x.UnitPrice,
                     Category = new DataModelResearch.Category()
                     {
                         Id = x.Category.Id,
@@ -119,6 +124,7 @@ namespace DataAccess.Concrete
             var productToUpdate = _context.Product.FirstOrDefault(x => x.Id == product.Id);
 
             productToUpdate.Name = product.Name;
+            productToUpdate.UnitPrice = product.UnitPrice;
 
             var newCategory = _context.Category.FirstOrDefault(x => x.Id == product.CategoryId);
 
@@ -137,7 +143,8 @@ namespace DataAccess.Concrete
                     Products = x.Select(product => new DataModelResearch.Product
                         {
                             Name = product.Name,
-                            Id = product.Id
+                            Id = product.Id,
+                            UnitPrice = product.UnitPrice
                         }).ToList()
                     }).ToList();
 

@@ -39,7 +39,7 @@ namespace DataAccess.Concrete
         public List<Product> LoadProductsWithCategory()
         {
             string sql = "SELECT * FROM test.\"Product\" AS A INNER JOIN test.\"Category\" AS B ON A.\"categoryId\" = B.id;";
-
+            
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
@@ -52,9 +52,10 @@ namespace DataAccess.Concrete
                         product.CategoryId = productCategory.Id;
                         return product;
                     },
-                    splitOn: "categoryId")
+                    splitOn: "Id")
                 .Distinct()
                 .ToList();
+
                 return products;
             }
         }
@@ -76,7 +77,7 @@ namespace DataAccess.Concrete
                         return product;
                     },
                     new { Id = id },
-                    splitOn: "categoryId").FirstOrDefault();
+                    splitOn: "Id").FirstOrDefault();
                 return productFound;
             }
         }
@@ -91,7 +92,7 @@ namespace DataAccess.Concrete
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                dbConnection.Execute("INSERT INTO test.\"Product\" (name, categoryId) VALUES(@Name, @CategoryId)", product);
+                dbConnection.Execute("INSERT INTO test.\"Product\" (name, categoryId, unitPrice) VALUES(@Name, @CategoryId, @UnitPrice)", product);
                 return true;
             }
         }
@@ -115,7 +116,7 @@ namespace DataAccess.Concrete
             using (IDbConnection dbConnection = Connection)
             {
                 dbConnection.Open();
-                dbConnection.Query("UPDATE test.\"Product\" SET name = @Name,  \"categoryId\"=@CategoryId WHERE \"Id\" = @Id", product);
+                dbConnection.Query("UPDATE test.\"Product\" SET name = @Name,  \"categoryId\"=@CategoryId, \"unitPrice\"=@UnitPrice WHERE \"Id\" = @Id", product);
             }
         }
 

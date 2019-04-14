@@ -57,6 +57,9 @@ namespace DataAccess.EFModels
                     .HasColumnName("name")
                     .HasMaxLength(50);
 
+                entity.Property(e => e.UnitPrice)
+                    .HasColumnName("Unit_Price");
+
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Product)
                     .HasForeignKey(d => d.CategoryId)

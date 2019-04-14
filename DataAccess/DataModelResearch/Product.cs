@@ -10,6 +10,8 @@ namespace DataAccess.DataModelResearch
 
         public int CategoryId { get; set; }
 
+        public int UnitPrice { get; set; }
+
         public Category Category { get; set; }
     }
 }

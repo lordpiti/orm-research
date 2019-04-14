@@ -112,7 +112,8 @@ namespace DataAccess.Concrete
                         Products = x.Select(product => new DataModelResearch.Product
                         {
                             Name = product.Name,
-                            Id = product.Id
+                            Id = product.Id,
+                            UnitPrice = product.UnitPrice
                         }).ToList()
                     }).ToList();
 

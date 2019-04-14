@@ -47,7 +47,7 @@ namespace Linq2dbTest
 
             #endregion
 
-            services.AddScoped<IResearchRepository, Linq2dbResearchRepository>();
+            services.AddScoped<IResearchRepository, DapperResearchRepository>();
 
             #region Swagger setup
 
