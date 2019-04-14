@@ -4615,6 +4615,8 @@
           "Dapper": "1.60.6",
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
           "Microsoft.Extensions.Configuration": "2.2.0",
+          "Microsoft.Extensions.Logging": "2.2.0",
+          "Microsoft.Extensions.Logging.Console": "2.2.0",
           "Microsoft.Extensions.Options": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",

@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Linq2dbTest
 {
@@ -116,7 +117,10 @@ namespace Linq2dbTest
             DataConnection.DefaultSettings = new MySettings(connectionStringSettings);
 
             //Enable generated SQL logging
-            DataConnection.TurnTraceSwitchOn();
+
+            //https://stackoverflow.com/questions/43722141/linq2db-nlog-or-logging
+            //https://linq2db.github.io/api/LinqToDB.Data.DataConnection.html#LinqToDB_Data_DataConnection_TurnTraceSwitchOn_System_Diagnostics_TraceLevel_
+            DataConnection.TurnTraceSwitchOn(TraceLevel.Info); //can be parameterless
             DataConnection.WriteTraceLine = (message, displayName) =>
             {
                 Console.WriteLine($"{message} {displayName}");

@@ -63,7 +63,7 @@ namespace DataAccess.Concrete
 
         public List<DataModelResearch.Product> LoadProductsWithCategory()
         {
-            var products = _context.Product.Include(x=>x.Category).Select(x => new DataModelResearch.Product()
+            var products = _context.Product.Select(x => new DataModelResearch.Product()
             {
                 Name = x.Name,
                 Id = x.Id,

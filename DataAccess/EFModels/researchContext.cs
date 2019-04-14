@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace DataAccess.EFModels
 {
@@ -16,14 +18,25 @@ namespace DataAccess.EFModels
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Product> Product { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseNpgsql("User ID=postgres;Host=localhost;Port=5432;Database=research;Pooling=true;");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //            if (!optionsBuilder.IsConfigured)
+            //            {
+            //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            //                optionsBuilder.UseNpgsql("User ID=postgres;Host=localhost;Port=5432;Database=research;Pooling=true;");
+
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLoggerFactory(LoggerFactory);
+        }
+
+        public static readonly LoggerFactory LoggerFactory =
+            new LoggerFactory(new[] {
+                //new ConsoleLoggerProvider((_, __) => true, true);
+                // https://elanderson.net/2018/10/entity-framework-core-logging/
+                // https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging#filtering-what-is-logged
+                new ConsoleLoggerProvider((category, level) => category == DbLoggerCategory.Database.Command.Name
+                       && level == LogLevel.Information, true)
+            });
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
