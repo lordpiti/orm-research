@@ -3,6 +3,7 @@ using DataAccess.Interface;
 using LinqToDB;
 using System.Collections.Generic;
 using System.Linq;
+using LinqToDB.Data;
 
 namespace DataAccess.Concrete
 {
@@ -48,11 +49,19 @@ namespace DataAccess.Concrete
         {
             using (var db = new Context())
             {
-                var q = db.Products.LoadWith(x=>x.Category);
+                var q = db.Products.LoadWith(x => x.Category);
 
-                var productList = q.OrderBy(x=>x.Name).ToList();
-
+                //query is not translated to SQL and executed until we indicate it with .tolist(), firstordefault(), etc
+                var productList = q.OrderBy(x => x.Name).ToList();
                 return productList;
+
+                #region Compiled query
+
+                //var compiledQuery = CompiledQuery.Compile((Context db2) => db2.Products.LoadWith(x => x.Category).OrderBy(x=>x.Name));
+                //return compiledQuery(db).ToList();
+
+                #endregion
+
             }
         }
 

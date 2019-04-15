@@ -50,7 +50,7 @@ namespace Linq2dbTest
 
             #region General DI setup for repositories
 
-            services.AddScoped<IResearchRepository, EFResearchRepository>();
+            services.AddScoped<IResearchRepository, Linq2dbResearchRepository>();
             services.AddScoped<DapperResearchRepository>();
 
             services.AddScoped<Func<bool, IResearchRepository>>(serviceProvider => isAuthorized =>

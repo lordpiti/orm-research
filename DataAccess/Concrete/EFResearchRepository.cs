@@ -63,7 +63,18 @@ namespace DataAccess.Concrete
 
         public List<DataModelResearch.Product> LoadProductsWithCategory()
         {
-            var products = _context.Product.Select(x => new DataModelResearch.Product()
+            var productsFromDb = _context.Product.OrderBy(x => x.Name);
+
+            #region Compiled query
+
+            ////compiled queries not fully supported in EF core 2
+            //// https://dzone.com/articles/compiled-queries-in-entity-framework-core-20
+            //var compiledQuery = EF.CompileQuery((researchContext context) => context.Product.Include(x=>x.Category));
+            //var productsFromDb = compiledQuery(_context).OrderBy(x => x.Name);
+
+            #endregion
+
+            var products = productsFromDb.Select(x => new DataModelResearch.Product()
             {
                 Name = x.Name,
                 Id = x.Id,
@@ -73,7 +84,7 @@ namespace DataAccess.Concrete
                     Id = x.Category.Id,
                     Name = x.Category.Name
                 }
-            }).OrderBy(x=>x.Name).ToList();
+            }).ToList();
 
             return products;
         }
