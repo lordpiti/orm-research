@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "ed3745285b99435aa4768ba2aba30ff5d8b2f17e"
+    "signature": "573026370a13c1a9da329fead978573a3590dc03"
   },
   "compilationOptions": {
     "defines": [
@@ -161,6 +161,80 @@
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
         }
       },
+      "MiniProfiler.AspNetCore/4.0.165": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Html.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Routing.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Caching.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
+          "MiniProfiler.Shared": "4.0.165"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MiniProfiler.AspNetCore.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.165.63492"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MiniProfiler.AspNetCore.dll": {}
+        }
+      },
+      "MiniProfiler.AspNetCore.Mvc/4.0.165": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "2.2.0",
+          "MiniProfiler.AspNetCore": "4.0.165"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MiniProfiler.AspNetCore.Mvc.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.165.63492"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MiniProfiler.AspNetCore.Mvc.dll": {}
+        }
+      },
+      "MiniProfiler.EntityFrameworkCore/4.0.165": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "2.2.4",
+          "MiniProfiler.Shared": "4.0.165"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MiniProfiler.EntityFrameworkCore.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.165.63492"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MiniProfiler.EntityFrameworkCore.dll": {}
+        }
+      },
+      "MiniProfiler.Shared/4.0.165": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Newtonsoft.Json": "11.0.2",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.Data.Common": "4.3.0",
+          "System.Diagnostics.DiagnosticSource": "4.5.0",
+          "System.Diagnostics.StackTrace": "4.3.0",
+          "System.Dynamic.Runtime": "4.3.0",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Threading.Tasks.Parallel": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MiniProfiler.Shared.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.165.63492"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MiniProfiler.Shared.dll": {}
+        }
+      },
       "Npgsql/4.0.4": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.5.1",
@@ -305,6 +379,30 @@
         }
       },
       "System.Collections.Immutable/1.5.0": {},
+      "System.ComponentModel/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.ComponentModel.Primitives/4.3.0": {
+        "dependencies": {
+          "System.ComponentModel": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Data.Common/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
       "System.Interactive.Async/3.2.0": {
         "runtime": {
           "lib/netstandard2.0/System.Interactive.Async.dll": {
@@ -338,6 +436,8 @@
           "Microsoft.Extensions.Logging": "2.2.0",
           "Microsoft.Extensions.Logging.Console": "2.2.0",
           "Microsoft.Extensions.Options": "2.2.0",
+          "MiniProfiler.AspNetCore.Mvc": "4.0.165",
+          "MiniProfiler.EntityFrameworkCore": "4.0.165",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
           "linq2db": "2.6.4",
@@ -3521,6 +3621,34 @@
       "path": "microsoft.entityframeworkcore.relational.design/1.1.2",
       "hashPath": "microsoft.entityframeworkcore.relational.design.1.1.2.nupkg.sha512"
     },
+    "MiniProfiler.AspNetCore/4.0.165": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3Y1LywyqgnT0xFVVaKfLYSzBnrnWy9P95kK1gtRBpwhyTVm6hvC1e5dCWywiDxQhFfU4HYbYkD+1IWGKUabsgQ==",
+      "path": "miniprofiler.aspnetcore/4.0.165",
+      "hashPath": "miniprofiler.aspnetcore.4.0.165.nupkg.sha512"
+    },
+    "MiniProfiler.AspNetCore.Mvc/4.0.165": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VSRy6RVO2C0SREwcQgrX0TDm2LQZIBoqYrcj4hiumwftzbUjvWvFJh+mEcdP5soHab9pNSOgwIG/1eh3uRLZZQ==",
+      "path": "miniprofiler.aspnetcore.mvc/4.0.165",
+      "hashPath": "miniprofiler.aspnetcore.mvc.4.0.165.nupkg.sha512"
+    },
+    "MiniProfiler.EntityFrameworkCore/4.0.165": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XFP1qkoi2RO96cdSAef0F/dgaZBRoJhaoTC3h1wAqiWQKTrwEnrxlgxobl5N0TRVaID0UgfiO6rpPeq7OzOBrw==",
+      "path": "miniprofiler.entityframeworkcore/4.0.165",
+      "hashPath": "miniprofiler.entityframeworkcore.4.0.165.nupkg.sha512"
+    },
+    "MiniProfiler.Shared/4.0.165": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pZXmCl9CpfqZlZPVbU06gk2YlikPvCrrgoZQctTNnCGeC+PbjxkYXSbxBAfmElZc6aGGEuWo3xh7eJfj7K9kCg==",
+      "path": "miniprofiler.shared/4.0.165",
+      "hashPath": "miniprofiler.shared.4.0.165.nupkg.sha512"
+    },
     "Npgsql/4.0.4": {
       "type": "package",
       "serviceable": true,
@@ -3583,6 +3711,27 @@
       "sha512": "sha512-EXKiDFsChZW0RjrZ4FYHu9aW6+P4MCgEDCklsVseRfhoO0F+dXeMSsMRAlVXIo06kGJ/zv+2w1a2uc2+kxxSaQ==",
       "path": "system.collections.immutable/1.5.0",
       "hashPath": "system.collections.immutable.1.5.0.nupkg.sha512"
+    },
+    "System.ComponentModel/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyGn1jGRZVfxnh8EdvDCi71v3bMXrsu8aYJOwoV7SNDLVhiEqwP86pPMyRGsDsxhXAm2b3o9OIqeETfN5qfezw==",
+      "path": "system.componentmodel/4.3.0",
+      "hashPath": "system.componentmodel.4.3.0.nupkg.sha512"
+    },
+    "System.ComponentModel.Primitives/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KMVuoQ+8bMQ/Z59M3s64num5AD74X5YSqVc7ibwGkPTfmmkl2W8VuSxLRJtpw4KzQrSKUgR0BLbF0adPfcTSGQ==",
+      "path": "system.componentmodel.primitives/4.3.0",
+      "hashPath": "system.componentmodel.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.Data.Common/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lm6E3T5u7BOuEH0u18JpbJHxBfOJPuCyl4Kg1RH10ktYLp5uEEE1xKrHW56/We4SnZpGAuCc9N0MJpSDhTHZGQ==",
+      "path": "system.data.common/4.3.0",
+      "hashPath": "system.data.common.4.3.0.nupkg.sha512"
     },
     "System.Interactive.Async/3.2.0": {
       "type": "package",

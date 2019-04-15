@@ -65,6 +65,14 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MiniProfiler.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[4.0.165, )"
+            },
+            "MiniProfiler.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[4.0.165, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

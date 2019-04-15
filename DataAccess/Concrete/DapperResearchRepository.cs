@@ -3,6 +3,7 @@ using DataAccess.DataModelResearch;
 using DataAccess.Interface;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using StackExchange.Profiling;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -22,7 +23,12 @@ namespace DataAccess.Concrete
         {
             get
             {
-                return new NpgsqlConnection(connectionString);
+                var dbConnection = new NpgsqlConnection(connectionString);
+                //basic configuration
+                //return dbConnection;
+
+                //Wrap the db connection into the Miniprofiler class to use it
+                return new StackExchange.Profiling.Data.ProfiledDbConnection(dbConnection, MiniProfiler.Current);
             }
         }
 

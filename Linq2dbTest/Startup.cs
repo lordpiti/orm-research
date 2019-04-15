@@ -50,7 +50,7 @@ namespace Linq2dbTest
 
             #region General DI setup for repositories
 
-            services.AddScoped<IResearchRepository, Linq2dbResearchRepository>();
+            services.AddScoped<IResearchRepository, DapperResearchRepository>();
             services.AddScoped<DapperResearchRepository>();
 
             services.AddScoped<Func<bool, IResearchRepository>>(serviceProvider => isAuthorized =>
@@ -65,6 +65,14 @@ namespace Linq2dbTest
                         throw new InvalidOperationException();
                 }
             });
+
+            #endregion
+
+            #region Miniprofiler setup
+
+            services.AddMiniProfiler(options =>
+               options.RouteBasePath = "/profiler"
+            ).AddEntityFramework();
 
             #endregion
 
@@ -125,8 +133,12 @@ namespace Linq2dbTest
             {
                 Console.WriteLine($"{message} {displayName}");
             };
+            LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
 
             #endregion
+
+            // profiling, url to see last profile check: http://localhost:xxxxx/profiler/results
+            app.UseMiniProfiler();
 
             app.UseHttpsRedirection();
             app.UseMvc();

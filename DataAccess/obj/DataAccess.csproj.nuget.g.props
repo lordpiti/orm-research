@@ -518,6 +518,8 @@
     <Import Project="$(NuGetPackageRoot)linq2db.postgresql\2.6.4\build\linq2db.PostgreSQL.props" Condition="Exists('$(NuGetPackageRoot)linq2db.postgresql\2.6.4\build\linq2db.PostgreSQL.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\pabloa\.nuget\packages\newtonsoft.json\10.0.3</PkgNewtonsoft_Json>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.codeanalysis.analyzers\1.1.0</PkgMicrosoft_CodeAnalysis_Analyzers>
     <Pkglinq2db_t4models Condition=" '$(Pkglinq2db_t4models)' == '' ">C:\Users\pabloa\.nuget\packages\linq2db.t4models\2.6.4</Pkglinq2db_t4models>
     <Pkglinq2db_PostgreSQL Condition=" '$(Pkglinq2db_PostgreSQL)' == '' ">C:\Users\pabloa\.nuget\packages\linq2db.postgresql\2.6.4</Pkglinq2db_PostgreSQL>
   </PropertyGroup>

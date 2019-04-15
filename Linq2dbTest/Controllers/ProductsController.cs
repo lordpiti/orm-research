@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataAccess.DataModelResearch;
 using DataAccess.Interface;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Profiling;
 
 namespace Linq2dbTest.Controllers
 {
@@ -29,8 +30,11 @@ namespace Linq2dbTest.Controllers
         [ApiExplorerSettings(GroupName = "v1")]
         public IEnumerable<Product> GetAllProducts()
         {
-            var products = _repo.LoadProductsWithCategory();
-            return products;
+            using (MiniProfiler.Current.Step("Get method"))
+            {
+                var products = _repo.LoadProductsWithCategory();
+                return products;
+            }
         }
 
         /// <summary>
