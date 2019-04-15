@@ -152,6 +152,18 @@ namespace DataAccess.Concrete
 
         public List<CategoryGroup> GetProductsGrouped()
         {
+            var sql = "SELECT \"x.Category\".name AS \"Name\", COUNT(*) AS \"NumberOfProducts\", AVG(x.\"Unit_Price\") AS \"AveragePrice\" " +
+                "FROM test.\"Product\" AS x " +
+                "LEFT JOIN test.\"Category\" AS \"x.Category\" ON x.\"categoryId\" = \"x.Category\".id " +
+                "GROUP BY \"x.Category\".name";
+
+            using (IDbConnection dbConnection = Connection)
+            {
+                dbConnection.Open();
+
+                var products = dbConnection.Query<CategoryGroup>(sql).ToList();
+                return products;
+            }
 
             throw new System.NotImplementedException();
         }
