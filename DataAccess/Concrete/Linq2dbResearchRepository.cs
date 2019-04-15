@@ -50,7 +50,7 @@ namespace DataAccess.Concrete
             {
                 var q = db.Products.LoadWith(x=>x.Category);
 
-                var productList = q.ToList();
+                var productList = q.OrderBy(x=>x.Name).ToList();
 
                 return productList;
             }
@@ -109,12 +109,14 @@ namespace DataAccess.Concrete
                     .Select(x => new CategoryGroup
                     {
                         Name = x.Key,
-                        Products = x.Select(product => new DataModelResearch.Product
-                        {
-                            Name = product.Name,
-                            Id = product.Id,
-                            UnitPrice = product.UnitPrice
-                        }).ToList()
+                        NumberOfProducts = x.Count(),
+                        AveragePrice = x.Average(y=>y.UnitPrice)
+                        //Products = x.Select(product => new DataModelResearch.Product
+                        //{
+                        //    Name = product.Name,
+                        //    Id = product.Id,
+                        //    UnitPrice = product.UnitPrice
+                        //}).ToList()
                     }).ToList();
 
                 return testdata;

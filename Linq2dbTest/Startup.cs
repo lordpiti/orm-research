@@ -50,7 +50,7 @@ namespace Linq2dbTest
 
             #region General DI setup for repositories
 
-            services.AddScoped<IResearchRepository, DapperResearchRepository>();
+            services.AddScoped<IResearchRepository, EFResearchRepository>();
             services.AddScoped<DapperResearchRepository>();
 
             services.AddScoped<Func<bool, IResearchRepository>>(serviceProvider => isAuthorized =>
@@ -70,6 +70,7 @@ namespace Linq2dbTest
 
             #region Miniprofiler setup
 
+            //see Linq2db instructions on https://linq2db.github.io/#miniprofiler
             services.AddMiniProfiler(options =>
                options.RouteBasePath = "/profiler"
             ).AddEntityFramework();

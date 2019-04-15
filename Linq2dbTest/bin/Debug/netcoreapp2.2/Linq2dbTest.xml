@@ -48,9 +48,9 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Linq2dbTest.Controllers.ProductsController.GetProductsGrouped(System.Int32)">
+        <member name="M:Linq2dbTest.Controllers.ProductsController.GetProductsGroupedByCategory">
             <summary>
-            Get all the products within a category
+            Get all the products info grouped by category
             </summary>
             <param name="id"></param>
             <returns></returns>

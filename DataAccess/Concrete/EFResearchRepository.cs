@@ -73,7 +73,7 @@ namespace DataAccess.Concrete
                     Id = x.Category.Id,
                     Name = x.Category.Name
                 }
-            }).ToList();
+            }).OrderBy(x=>x.Name).ToList();
 
             return products;
         }
@@ -140,13 +140,15 @@ namespace DataAccess.Concrete
                 .Select(x => new DataModelResearch.CategoryGroup
                 {
                     Name = x.Key,
-                    Products = x.Select(product => new DataModelResearch.Product
-                        {
-                            Name = product.Name,
-                            Id = product.Id,
-                            UnitPrice = product.UnitPrice
-                        }).ToList()
-                    }).ToList();
+                    NumberOfProducts = x.Count(),
+                    AveragePrice = x.Average(y=>y.UnitPrice)
+                    //Products = x.Select(product => new DataModelResearch.Product
+                    //    {
+                    //        Name = product.Name,
+                    //        Id = product.Id,
+                    //        UnitPrice = product.UnitPrice
+                    //    }).ToList()
+                }).ToList();
 
             return testdata;
         }

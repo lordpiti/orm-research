@@ -1,5 +1,11 @@
 ﻿<!-- File based on https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/src/Swashbuckle.AspNetCore.SwaggerUI/index.html -->
 <!-- HTML for static distribution bundle build -->
+<script async="async" id="mini-profiler" src="/profiler/includes.min.js?v=4.0.138+gcc91adf599"
+        data-version="4.0.138+gcc91adf599" data-path="/profiler/"
+        data-current-id="4ec7c742-49d4-4eaf-8281-3c1e0efa748a" data-ids="" data-position="Left"
+        data-authorized="true" data-max-traces="15" data-toggle-shortcut="Alt+P"
+        data-trivial-milliseconds="2.0" data-ignored-duplicate-execute-types="Open,OpenAsync,Close,CloseAsync">
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,40 +76,39 @@
     </svg>
 
     <div id="swagger-ui"></div>
-
     <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
     <script>
-  if (window.navigator.userAgent.indexOf("Edge") > -1) {
-    console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
-    window.fetch = undefined;
-  }
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+            window.fetch = undefined;
+        }
     </script>
 
     <script src="./swagger-ui-bundle.js"></script>
     <script src="./swagger-ui-standalone-preset.js"></script>
     <script>
-  window.onload = function () {
-    var configObject = JSON.parse('{"urls":[{"url":"/swagger/v1/swagger.json","name":"Research api for querying"}, {"url":"/swagger/v2/swagger.json","name":"Research api for updating"}], "deepLinking":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"validatorUrl":null}');
-    var oauthConfigObject = JSON.parse('{"clientId":"clientId","clientSecret":"clientSecret","scopeSeperator":" ","useBasicAuthenticationWithAccessCodeGrant":false}');
+        window.onload = function () {
+            var configObject = JSON.parse('{"urls":[{"url":"/swagger/v1/swagger.json","name":"Research api for querying"}, {"url":"/swagger/v2/swagger.json","name":"Research api for updating"}], "deepLinking":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"validatorUrl":null}');
+            var oauthConfigObject = JSON.parse('{"clientId":"clientId","clientSecret":"clientSecret","scopeSeperator":" ","useBasicAuthenticationWithAccessCodeGrant":false}');
 
-    // Apply mandatory parameters
-    configObject.dom_id = "#swagger-ui";
-    configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
-    configObject.layout = "StandaloneLayout";
+            // Apply mandatory parameters
+            configObject.dom_id = "#swagger-ui";
+            configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+            configObject.layout = "StandaloneLayout";
 
-    // If oauth2RedirectUrl isn't specified, use the built-in default
-    if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
-      configObject.oauth2RedirectUrl = window.location.href.replace("index.html", "oauth2-redirect.html");
+            // If oauth2RedirectUrl isn't specified, use the built-in default
+            if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+                configObject.oauth2RedirectUrl = window.location.href.replace("index.html", "oauth2-redirect.html");
 
-    // Build a system
-    const ui = SwaggerUIBundle(configObject);
+            // Build a system
+            const ui = SwaggerUIBundle(configObject);
 
-    // Apply OAuth config
-    ui.initOAuth(oauthConfigObject);
+            // Apply OAuth config
+            ui.initOAuth(oauthConfigObject);
 
-    document.getElementsByClassName('topbar-wrapper')[0].getElementsByTagName('img')[0].src = "dunnhumby.svg";
-    document.getElementsByClassName('topbar-wrapper')[0].getElementsByTagName('img')[0].alt = "dunnhumby"
-  }
+            document.getElementsByClassName('topbar-wrapper')[0].getElementsByTagName('img')[0].src = "dunnhumby.svg";
+            document.getElementsByClassName('topbar-wrapper')[0].getElementsByTagName('img')[0].alt = "dunnhumby"
+        }
     </script>
 </body>
 

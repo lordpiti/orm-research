@@ -114,15 +114,15 @@ namespace Linq2dbTest.Controllers
         }
 
         /// <summary>
-        /// Get all the products within a category
+        /// Get all the products info grouped by category
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("byCategory")]
         [ApiExplorerSettings(GroupName = "v1")]
-        public List<CategoryGroup> GetProductsGrouped(int id)
+        public List<CategoryGroup> GetProductsGroupedByCategory()
         {
-            _repo = _serviceAccessor(true);
+            _repo = _serviceAccessor(true);  //set it to true to use the Dapper repo
             return _repo.GetProductsGrouped();
         }
     }
