@@ -52,7 +52,12 @@
             <summary>
             Get all the products info grouped by category
             </summary>
-            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Linq2dbTest.Controllers.ProductsController.GetProductsWithCategoryPriceAverage">
+            <summary>
+            Get all the products with the average price for the category they belong to
+            </summary>
             <returns></returns>
         </member>
     </members>

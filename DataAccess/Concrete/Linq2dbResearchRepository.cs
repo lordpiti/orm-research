@@ -131,5 +131,21 @@ namespace DataAccess.Concrete
                 return testdata;
             }
         }
+
+        public List<object> GetProductsWithCategoryPriceAverage()
+        {
+            using (var db = new Context())
+            {
+                var products = db.Products.LoadWith(x=>x.Category).Select(x => new
+                {
+                    productId = x.Id,
+                    name = x.Name,
+                    categoryAveragePrice = Sql.Ext.Average<decimal>(x.UnitPrice).Over().PartitionBy(x.CategoryId ).ToValue(),
+                    categoryName = x.Category.Name
+                }).ToList();
+
+                return products.ToList<object>();
+            }
+        }
     }
 }

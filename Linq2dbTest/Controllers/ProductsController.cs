@@ -33,6 +33,7 @@ namespace Linq2dbTest.Controllers
             using (MiniProfiler.Current.Step("Get method"))
             {
                 var products = _repo.LoadProductsWithCategory();
+
                 return products;
             }
         }
@@ -123,6 +124,18 @@ namespace Linq2dbTest.Controllers
         {
             _repo = _serviceAccessor(true);  //set it to true to use the Dapper repo
             return _repo.GetProductsGrouped();
+        }
+
+        /// <summary>
+        /// Get all the products with the average price for the category they belong to
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("withCategoryAverage")]
+        [ApiExplorerSettings(GroupName = "v1")]
+        public IEnumerable<object> GetProductsWithCategoryPriceAverage()
+        {
+            var products = _repo.GetProductsWithCategoryPriceAverage();
+            return products;
         }
     }
 }

@@ -25,5 +25,7 @@ namespace DataAccess.Interface
         List<Product> LoadProductsWithinCategory(int id);
 
         List<CategoryGroup> GetProductsGrouped();
+
+        List<object> GetProductsWithCategoryPriceAverage();
     }
 }

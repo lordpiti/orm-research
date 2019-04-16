@@ -163,6 +163,11 @@ namespace DataAccess.Concrete
 
             return testdata;
         }
+
+        public List<object> GetProductsWithCategoryPriceAverage()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
 
