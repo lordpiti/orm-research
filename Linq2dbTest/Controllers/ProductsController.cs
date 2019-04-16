@@ -116,7 +116,6 @@ namespace Linq2dbTest.Controllers
         /// <summary>
         /// Get all the products info grouped by category
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("byCategory")]
         [ApiExplorerSettings(GroupName = "v1")]

@@ -138,6 +138,9 @@ namespace Linq2dbTest
 
             #endregion
 
+            // Get Dapper to ignore/remove underscores in field names when mapping
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+
             // profiling, url to see last profile check: http://localhost:xxxxx/profiler/results
             app.UseMiniProfiler();
 
