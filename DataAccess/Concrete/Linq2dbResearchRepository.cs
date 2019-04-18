@@ -4,14 +4,42 @@ using LinqToDB;
 using System.Collections.Generic;
 using System.Linq;
 using LinqToDB.Data;
+using LinqToDB.Mapping;
+using System;
 
 namespace DataAccess.Concrete
 {
     public class Linq2dbResearchRepository : IResearchRepository
     {
+        private Context _connection;
+
+        internal Context Connection
+        {
+            get
+            {
+                if (_connection == null)
+                {
+                    return new Context();
+                }
+                else
+                {
+                    return _connection;
+                }
+            }
+        }
+
+        public Linq2dbResearchRepository()
+        {
+        }
+
+        public Linq2dbResearchRepository(Context connection)
+        {
+            this._connection = connection;
+        }
+
         public bool AddCategory(Category category)
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 category.Id = db.InsertWithInt32Identity(category);
             }
@@ -20,12 +48,7 @@ namespace DataAccess.Concrete
 
         public bool AddProduct(Product product)
         {
-            if (product.CategoryId == 0)
-            {
-                product.CategoryId = product.Category.Id;
-            }
-
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 product.Id = db.InsertWithInt32Identity(product);
             }
@@ -47,7 +70,7 @@ namespace DataAccess.Concrete
 
         public List<Product> LoadProductsWithCategory()
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 var q = db.Products.LoadWith(x => x.Category);
 
@@ -67,7 +90,7 @@ namespace DataAccess.Concrete
 
         public Product FindProduct(int id)
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 var product = db.Products.LoadWith(x => x.Category).FirstOrDefault(x => x.Id == id);
 
@@ -77,7 +100,7 @@ namespace DataAccess.Concrete
 
         public void RemoveProduct(int id)
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 db.Products
                     .Where(p => p.Id == id)
@@ -92,7 +115,7 @@ namespace DataAccess.Concrete
                 product.CategoryId = product.Category.Id;
             }
 
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 db.Update(product);
             }
@@ -100,7 +123,7 @@ namespace DataAccess.Concrete
 
         public List<Product> LoadProductsWithinCategory(int id)
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 var q = db.Products.LoadWith(x=>x.Category).Where(x => x.CategoryId == id);
 
@@ -112,7 +135,7 @@ namespace DataAccess.Concrete
 
         public List<CategoryGroup> GetProductsGrouped()
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 var testdata = db.Products.GroupBy(x => x.Category.Name)
                     .Select(x => new CategoryGroup
@@ -134,7 +157,7 @@ namespace DataAccess.Concrete
 
         public List<object> GetProductsWithCategoryPriceAverage()
         {
-            using (var db = new Context())
+            using (var db = this.Connection)
             {
                 var products = db.Products.LoadWith(x=>x.Category).Select(x => new
                 {
@@ -145,6 +168,39 @@ namespace DataAccess.Concrete
                 }).ToList();
 
                 return products.ToList<object>();
+            }
+        }
+
+        public void TransactionTest()
+        {
+            using (var db = this.Connection)
+            {
+                try
+                {
+                    var newCategory = new Category()
+                    {
+                        Name = "transactional category",
+                    };
+
+                    db.BeginTransaction();
+
+                    var generatedIdForCategory = db.InsertWithInt32Identity(newCategory);
+
+                    var newProduct = new Product()
+                    {
+                        Name = "transactional product",
+                        UnitPrice = 1983,
+                        CategoryId = generatedIdForCategory
+                    };
+
+                    db.InsertWithInt32Identity(newProduct);
+
+                    db.CommitTransaction();
+                }
+                catch (Exception ex)
+                {
+                    db.RollbackTransaction();
+                }
             }
         }
     }

@@ -168,6 +168,11 @@ namespace DataAccess.Concrete
         {
             throw new System.NotImplementedException();
         }
+
+        public void TransactionTest()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
 

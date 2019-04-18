@@ -49,7 +49,7 @@ namespace DataAccess.DataModelResearch
 
         #endregion
 
-        public ITable<Product> Products { get { return this.GetTable<Product>(); } }
+        public virtual ITable<Product> Products { get { return this.GetTable<Product>(); } }
 
         public ITable<Category> Category { get { return this.GetTable<Category>(); } }
 

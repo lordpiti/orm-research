@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linq2dbTest", "Linq2dbTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{FBA1D3E4-03A0-4B9F-8AA9-D1A279EF1C30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTests", "RepositoryTests\RepositoryTests.csproj", "{9F30790E-380C-432D-8021-78FE73BFCA42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FBA1D3E4-03A0-4B9F-8AA9-D1A279EF1C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA1D3E4-03A0-4B9F-8AA9-D1A279EF1C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBA1D3E4-03A0-4B9F-8AA9-D1A279EF1C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F30790E-380C-432D-8021-78FE73BFCA42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F30790E-380C-432D-8021-78FE73BFCA42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F30790E-380C-432D-8021-78FE73BFCA42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F30790E-380C-432D-8021-78FE73BFCA42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

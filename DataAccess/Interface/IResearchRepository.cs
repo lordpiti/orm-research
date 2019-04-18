@@ -27,5 +27,7 @@ namespace DataAccess.Interface
         List<CategoryGroup> GetProductsGrouped();
 
         List<object> GetProductsWithCategoryPriceAverage();
+
+        void TransactionTest();
     }
 }

@@ -137,5 +137,13 @@ namespace Linq2dbTest.Controllers
             var products = _repo.GetProductsWithCategoryPriceAverage();
             return products;
         }
+
+        [HttpGet("transaction")]
+        [ApiExplorerSettings(GroupName = "v1")]
+        public object TransactionTest()
+        {
+            _repo.TransactionTest();
+            return null;
+        }
     }
 }
