@@ -1,0 +1,18 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE test_Category ([id], [name]);
+INSERT INTO test_Category VALUES(1,'category 1');
+INSERT INTO test_Category VALUES(2,'category 2');
+INSERT INTO test_Category VALUES(3,'category 3');
+INSERT INTO test_Category VALUES(4,'category 4');
+INSERT INTO test_Category VALUES(8,'transactional category');
+INSERT INTO test_Category VALUES(9,'category weird');
+CREATE TABLE test_Product ([id], [name], [categoryid], [unit_price]);
+INSERT INTO test_Product VALUES(2,'Product modified with Dapper HAHA',2,20);
+INSERT INTO test_Product VALUES(5,'product test 11',1,50);
+INSERT INTO test_Product VALUES(1,'Updated product',3,500);
+INSERT INTO test_Product VALUES(6,'another test',1,33);
+INSERT INTO test_Product VALUES(7,'zzz test',1,78);
+INSERT INTO test_Product VALUES(8,'transactional product',8,1983);
+CREATE INDEX fki_category_fk ON test_product (categoryid);
+COMMIT;

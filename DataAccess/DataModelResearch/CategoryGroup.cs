@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataAccess.DataModelResearch
+﻿namespace DataAccess.DataModelResearch
 {
     public class CategoryGroup
     {
@@ -11,5 +7,19 @@ namespace DataAccess.DataModelResearch
         public int NumberOfProducts { get; set; }
 
         public double AveragePrice { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var categoryGroup = obj as CategoryGroup;
+
+            return categoryGroup.Name == this.Name
+                && categoryGroup.AveragePrice == this.AveragePrice
+                && categoryGroup.NumberOfProducts == this.NumberOfProducts;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

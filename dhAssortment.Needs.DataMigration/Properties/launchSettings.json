@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dhAssortment.Needs.DataMigration": {
+      "commandName": "Project",
+      "commandLineArgs": "-t US,Production -p true -d false"
+    }
+  }
+}

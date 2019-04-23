@@ -1,0 +1,1 @@
+﻿DROP FUNCTION IF EXISTS {{schema_name}}.person_get();

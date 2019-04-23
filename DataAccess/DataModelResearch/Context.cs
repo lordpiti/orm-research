@@ -1,4 +1,5 @@
 ﻿using LinqToDB;
+using LinqToDB.Configuration;
 using LinqToDB.Data;
 using LinqToDB.DataProvider;
 using LinqToDB.DataProvider.SqlServer;
@@ -32,6 +33,12 @@ namespace DataAccess.DataModelResearch
                 mappingSchema = MappingLinq2Db.Do();
         }
 
+        public Context(string connectionString)
+        {
+            if (mappingSchema == null)
+                mappingSchema = MappingLinq2Db.Do();
+        }
+
         private static IDataProvider GetDataProvider()
         {
             // you can move this line to other place, but it should be
@@ -55,5 +62,18 @@ namespace DataAccess.DataModelResearch
 
         private static MappingSchema mappingSchema;
 
+    }
+
+    public static class TestDbStartup
+    {
+        private static bool _started;
+        public static void Init(ILinqToDBSettings settings)
+        {
+            if (!_started)
+            {
+                DataConnection.DefaultSettings = settings;
+                _started = true;
+            }
+        }
     }
 }
